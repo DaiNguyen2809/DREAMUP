@@ -1,0 +1,43 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+    font-family: 'gilroy';
+    src: url(/src/assets/fonts/SVN-Gilroy-Medium.otf) format('opentype');
+}
+
+@font-face {
+    font-family: 'gilroy-italic';
+    src: url(/src/assets/fonts/SVN-Gilroy-Medium-Italic.otf) format('opentype');
+}
+
+@font-face {
+    font-family: 'gilroy-bold';
+    src: url(/src/assets/fonts/SVN-Gilroy-Bold.otf) format('opentype');
+}
+
+@font-face {
+    font-family: 'gilroy-bold-italic';
+    src: url(/src/assets/fonts/SVN-Gilroy-Bold-Italic.otf) format('opentype');
+}
+
+@font-face {
+    font-family: 'gilroy-thin';
+    src: url(/src/assets/fonts/SVN-Gilroy-Regular.otf) format('opentype');
+}
+
+@font-face {
+    font-family: 'gilroy-thin-italic';
+    src: url(/src/assets/fonts/SVN-Gilroy-Italic.otf) format('opentype');
+}
+
+@font-face {
+    font-family: 'gilroy-xbold';
+    src: url(/src/assets/fonts/SVN-Gilroy-XBold.otf) format('opentype');
+}
+
+@font-face {
+    font-family: 'gilroy-xbold-italic';
+    src: url(/src/assets/fonts/SVN-Gilroy-XBold-Italic.otf) format('opentype');
+}
