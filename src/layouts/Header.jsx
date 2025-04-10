@@ -25,7 +25,9 @@ function Header() {
                     <FontAwesomeIcon icon={faMagnifyingGlass} className="absolute left-3 top-3 w-4 h-4 text-gray-500 cursor-pointer" />
                     <input type="text" placeholder="Nhập thông tin tìm kiếm" class="w-full h-10 pl-10 pr-4 py-2 text-darkCF border border-gray-300 rounded-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500" />
                 </div>
-                <FontAwesomeIcon icon={faUser} className="ml-8 w-6 h-6 cursor-pointer" />
+                <Link to="/login">
+                    <FontAwesomeIcon icon={faUser} className="ml-8 w-6 h-6 cursor-pointer" />
+                </Link>
                 <Link to="/cart">
                     <FontAwesomeIcon icon={faCartShopping} className=" ml-8 w-6 h-6 cursor-pointer" />
                 </Link>

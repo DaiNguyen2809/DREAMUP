@@ -1,27 +1,53 @@
-import { Button, LinkButton, RectangleUnderline } from "../components";
-import img from "../assets/images/S&B250.png";
-import choco from "../assets/images/chocolate.png";
-import raisin from "../assets/images/raisins.png";
-import nuts from "../assets/images/peanut.png";
-import { faShoppingCart, faCoins, faHeart, faCircleInfo, faArrowRight } from "@fortawesome/free-solid-svg-icons";
+import { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
+import axios from "axios";
+import { ProductTaste, ProductDescrip } from "../components";
+import { RectangleUnderline, Button } from "../components";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faShoppingCart, faCoins, faHeart, faCircleInfo } from "@fortawesome/free-solid-svg-icons";
+import img from "../assets/images/logo_goe.png";
 function ProductDetail() {
+    const [product, setProduct] = useState(null);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
+
+    const { sku } = useParams();
+
+    useEffect(() => {
+        const fetchProduct = async () => {
+            try {
+                setLoading(true);
+                const response = await axios.get(`http://127.0.0.1:8000/api/products/${sku}`);
+                console.log(response.data);
+                setProduct(response.data);
+            } catch (error) {
+                setError("Không thể tải sản phẩm: " + error.message);
+            } finally {
+                setLoading(false);
+            }
+        };
+        fetchProduct();
+    }, [sku]);
+
+    if (loading) return <p>Đang tải sản phẩm...</p>;
+    if (error) return <p>{error}</p>;
+    if (!product) return <p>Sản phẩm không tồn tại</p>;
     return (
         <div className="w-full font-gilroy text-base px-14 py-14 flex flex-col">
-            <div className="w-full flex items-center">
+            <div className="w-full flex items-center justify-center">
                 <div className="w-[47%] h-fit">
-                    <img src={img} alt="ảnh sản phẩm" className="max-w-xl shadow-md" />
+                    <img src={product?.image ? `http://127.0.0.1:8000/storage/${product.image}` : img} alt="ảnh sản phẩm" className="max-w-xl shadow-md" />
                     <div className="max-w-xl flex justify-between mt-4">
-                        <img src={img} alt="ảnh sản phẩm" className="w-[19%] bg-red-100 shadow-sm" />
-                        <img src={img} alt="ảnh sản phẩm" className="w-[19%] bg-red-100 shadow-sm" />
-                        <img src={img} alt="ảnh sản phẩm" className="w-[19%] bg-red-100 shadow-sm" />
-                        <img src={img} alt="ảnh sản phẩm" className="w-[19%] bg-red-100 shadow-sm" />
-                        <img src={img} alt="ảnh sản phẩm" className="w-[19%] bg-red-100 shadow-sm" />
+                        <img src={`http://127.0.0.1:8000/storage/${product.image2}`} alt="ảnh sản phẩm" className="w-[19%] bg-red-100 shadow-sm" />
+                        <img src={`http://127.0.0.1:8000/storage/${product.image3}`} alt="ảnh sản phẩm" className="w-[19%] bg-red-100 shadow-sm" />
+                        <img src={`http://127.0.0.1:8000/storage/${product.image4}`} alt="ảnh sản phẩm" className="w-[19%] bg-red-100 shadow-sm" />
+                        <img src={`http://127.0.0.1:8000/storage/${product.image5}`} alt="ảnh sản phẩm" className="w-[19%] bg-red-100 shadow-sm" />
+                        <img src={`http://127.0.0.1:8000/storage/${product.image6}`} alt="ảnh sản phẩm" className="w-[19%] bg-red-100 shadow-sm" />
                     </div>
                 </div>
                 <div className="w-[53%] leading-relaxed">
-                    <h2 className="text-6xl font-gilroy_bold text-darkCF">AROMATIC HARMONY</h2>
-                    <p className="mt-4 text-4xl font-gilroy_bold_italic text-yellowCF">120,000VNĐ</p>
+                    <h2 className="text-6xl font-gilroy_bold text-darkCF">{product.name}</h2>
+                    <p className="mt-4 text-4xl font-gilroy_bold_italic text-yellowCF">{Number(product.price).toLocaleString("vi-VN")}</p>
                     <RectangleUnderline />
                     <div className="w-full flex items-center mt-8 text-brownCF">
                         <p className="mr-4 text-darkCF">Cỡ xay:</p>
@@ -77,87 +103,8 @@ function ProductDetail() {
                     </div>
                 </div>
             </div>
-
-            <div className="w-full flex mt-32">
-                <div className="w-full flex justify-center items-center">
-                    <div className="w-[60%] flex flex-col items-start">
-                        <p className="text-darkCF font-gilroy_bold_italic text-6xl mb-6">Thông tin hương vị</p>
-                        <LinkButton path="/">
-                            Cách pha chế
-                            <FontAwesomeIcon className="ml-2" icon={faArrowRight} />
-                        </LinkButton>
-                    </div>
-
-                    <div className="w-[40%] flex flex-col justify-start text-brownCF">
-                        <p className="mb-2 text-darkCF">GHI CHÚ HƯƠNG VỊ:</p>
-                        <p className="mb-2">Holler Mountain delivers a burst of citrus and berry jam rounded out with notes of creamy caramel.</p>
-                        <div className="flex justify-center gap-10 mt-3">
-                            <div className="flex flex-col justify-center items-center mb-2">
-                                <img src={choco} alt="choco" className="border-2 rounded-sm border-darkCF px-2 py-2 w-20 h-20 mb-3" />
-                                <p>Sô-cô-la</p>
-                            </div>
-                            <div className="flex flex-col justify-center items-center mb-2">
-                                <img src={nuts} alt="choco" className="border-2 rounded-sm border-darkCF px-2 py-2 w-20 h-20 mb-3" />
-                                <p>Hạt rang</p>
-                            </div>
-                            <div className="flex flex-col justify-center items-center mb-2">
-                                <img src={raisin} alt="choco" className="border-2 rounded-sm border-darkCF px-2 py-2 w-20 h-20 mb-3" />
-                                <p>Nho khô</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div className="mt-16 w-full  h-fit px-8 py-8 text-justify text-darkCF shadow-lg">
-                <h2 className="text-xl font-gilroy_bold">MÔ TẢ SẢN PHẨM</h2>
-                <div className="mt-2 mb-2 w-full h-0.5 bg-brownCF"></div>
-                <p>• Cà phê Robusta mang vị đắng đậm hương thơm ngất ngây để lại hậu vị sau khi uống làm say lòng những người thưởng thức khó tính nhất. Thích hợp người gu cà phê mạnh. Dùng pha máy Espresso hoặc pha phin đều được.</p>
-                <p>• 100% cà phê Robusta chín cây, được tuyển chọn kỹ càng, hạt to, chín đỏ mọng, phơi vòm. Quy trình chế biến được kiểm soát chặt chẽ, rang xay mộc nguyên chất theo phương pháp truyền thống.</p>
-                <p>• Cà phê Robusta Lâm Đồng được trồng từ vùng nguyên liệu Di Linh - Lâm Đồng chất lượng.</p>
-                <h2 className="mt-4 text-darkCF font-gilroy_bold">THÔNG TIN CHI TIẾT SẢN PHẨM: </h2>
-                <p>Thành phần: 100% cà phê Robusta.</p>
-                <p>Hướng dẫn sử dụng: tráng nhẹ phin, cho lượng cà phê khoảng 10-15gr, thêm vào 20ml nước sôi và chờ 20-25 giây. Rót nhẹ nhàng thêm nước vào phin đến khi lượng nước đạt vừa sở thích. Lấy phin ra, có thể thêm đường / sữa và đá tuỳ thích.</p>
-                <p>Thông tin cảnh báo an toàn vệ sinh: không sử dụng khi sản phẩm có hiện tượng nấm mốc, mùi lạ.</p>
-                <p>Quy cách đóng gói: cà phê đựng trong bao thiếc chuyên dụng, hộp thiếc ngoài giúp bảo quản cà phê cách tốt hơn, hiện đại, sang trọng, món quà sức khoẻ cho người thân.</p>
-                <p>Ngày sản xuất: xem trên bao bì.</p>
-                <p>Hạn sử dụng: 12 tháng kể từ ngày sản xuất. </p>
-                <p>Nguồn gốc: sản phẩm GOE JSC - Việt Nam.</p>
-            </div>
-            <div className="mt-16 w-full flex justify-center flex-wrap px-10 gap-8">
-                <div className="w-72 flex flex-col justify-center items-center shadow-lg rounded-sm">
-                    <img src={img} alt="ảnh sản phẩm" className="w-64 h-64 rounded-sm" />
-                    <div className="w-full h-fit px-4 py-4">
-                        <p className="text-xl font-gilroy_italic">STRONG & BOLD</p>
-                        <p className="text-sm font-gilroy_italic">Cà phê rang xay</p>
-                        <p className="text-right mt-2 text-3xl font-gilroy_bold">125,000VNĐ</p>
-                    </div>
-                </div>
-                <div className="w-72 flex flex-col justify-center items-center shadow-lg rounded-sm">
-                    <img src={img} alt="ảnh sản phẩm" className="w-64 h-64 rounded-sm" />
-                    <div className="w-full h-fit px-4 py-4">
-                        <p className="text-xl font-gilroy_italic">STRONG & BOLD</p>
-                        <p className="text-sm font-gilroy_italic">Cà phê rang xay</p>
-                        <p className="text-right mt-2 text-3xl font-gilroy_bold">125,000VNĐ</p>
-                    </div>
-                </div>
-                <div className="w-72 flex flex-col justify-center items-center shadow-lg rounded-sm">
-                    <img src={img} alt="ảnh sản phẩm" className="w-64 h-64 rounded-sm" />
-                    <div className="w-full h-fit px-4 py-4">
-                        <p className="text-xl font-gilroy_italic">STRONG & BOLD</p>
-                        <p className="text-sm font-gilroy_italic">Cà phê rang xay</p>
-                        <p className="text-right mt-2 text-3xl font-gilroy_bold">125,000VNĐ</p>
-                    </div>
-                </div>
-                <div className="w-72 flex flex-col justify-center items-center shadow-lg rounded-sm">
-                    <img src={img} alt="ảnh sản phẩm" className="w-64 h-64 rounded-sm" />
-                    <div className="w-full h-fit px-4 py-4">
-                        <p className="text-xl font-gilroy_italic">STRONG & BOLD</p>
-                        <p className="text-sm font-gilroy_italic">Cà phê rang xay</p>
-                        <p className="text-right mt-2 text-3xl font-gilroy_bold">125,000VNĐ</p>
-                    </div>
-                </div>
-            </div>
+            <ProductTaste />
+            <ProductDescrip />
         </div>
     );
 }

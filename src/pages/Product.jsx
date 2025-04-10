@@ -1,6 +1,27 @@
-import img from "../assets/images/S&B250.png";
-import { Button, LinkButton } from "../components";
+import { useEffect, useState } from "react";
+import { Button, LinkButton, ProductCard } from "../components";
+import axios from "axios";
+import { Link } from "react-router-dom";
 function Product() {
+    const [products, setProducts] = useState([]);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
+
+    useEffect(() => {
+        const fetchProducts = async () => {
+            try {
+                setLoading(true);
+                const response = await axios.get("http://127.0.0.1:8000/api/products");
+                setProducts(response.data);
+            } catch (error) {
+                setError("Không thể load sản phẩm: " + error.message);
+            } finally {
+                setLoading(false);
+            }
+        };
+        fetchProducts();
+    }, []);
+
     return (
         <div className="font-gilroy text-base px-5 py-14">
             <h1 className="font-gilroy_xbold_italic text-stone-700 text-5xl ml-14 mb-2">SẢN PHẨM</h1>
@@ -13,39 +34,18 @@ function Product() {
             </div>
 
             <div className="w-full flex flex-col gap-8 mt-12">
-                <div className="w-full flex justify-center flex-wrap px-10 gap-8">
-                    <div className="w-72 flex flex-col justify-center items-center shadow-lg rounded-sm">
-                        <img src={img} alt="ảnh sản phẩm" className="w-64 h-64 rounded-sm" />
-                        <div className="w-full h-fit px-4 py-4">
-                            <p className="text-xl font-gilroy_italic">STRONG & BOLD</p>
-                            <p className="text-sm font-gilroy_italic">Cà phê rang xay</p>
-                            <p className="text-right mt-2 text-3xl font-gilroy_bold">125,000VNĐ</p>
-                        </div>
-                    </div>
-                    <div className="w-72 flex flex-col justify-center items-center shadow-lg rounded-sm">
-                        <img src={img} alt="ảnh sản phẩm" className="w-64 h-64 rounded-sm" />
-                        <div className="w-full h-fit px-4 py-4">
-                            <p className="text-xl font-gilroy_italic">STRONG & BOLD</p>
-                            <p className="text-sm font-gilroy_italic">Cà phê rang xay</p>
-                            <p className="text-right mt-2 text-3xl font-gilroy_bold">125,000VNĐ</p>
-                        </div>
-                    </div>
-                    <div className="w-72 flex flex-col justify-center items-center shadow-lg rounded-sm">
-                        <img src={img} alt="ảnh sản phẩm" className="w-64 h-64 rounded-sm" />
-                        <div className="w-full h-fit px-4 py-4">
-                            <p className="text-xl font-gilroy_italic">STRONG & BOLD</p>
-                            <p className="text-sm font-gilroy_italic">Cà phê rang xay</p>
-                            <p className="text-right mt-2 text-3xl font-gilroy_bold">125,000VNĐ</p>
-                        </div>
-                    </div>
-                    <div className="w-72 flex flex-col justify-center items-center shadow-lg rounded-sm">
-                        <img src={img} alt="ảnh sản phẩm" className="w-64 h-64 rounded-sm" />
-                        <div className="w-full h-fit px-4 py-4">
-                            <p className="text-xl font-gilroy_italic">STRONG & BOLD</p>
-                            <p className="text-sm font-gilroy_italic">Cà phê rang xay</p>
-                            <p className="text-right mt-2 text-3xl font-gilroy_bold">125,000VNĐ</p>
-                        </div>
-                    </div>
+                <div className="w-[90%] flex justify-start mx-auto flex-wrap px-10 gap-8">
+                    {loading ? (
+                        <p>Đang tải sản phẩm...</p>
+                    ) : error ? (
+                        <p>{error}</p>
+                    ) : (
+                        products.map((product) => (
+                            <Link key={product.SKU} to={`/product/detail/${product.SKU}`}>
+                                <ProductCard key={product.SKU} product={product} />
+                            </Link>
+                        ))
+                    )}
                 </div>
             </div>
         </div>
