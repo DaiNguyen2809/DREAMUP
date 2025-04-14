@@ -34,7 +34,7 @@ function Product() {
             </div>
 
             <div className="w-full flex flex-col gap-8 mt-12">
-                <div className="w-[90%] flex justify-start mx-auto flex-wrap px-10 gap-8">
+                <div className="w-full 2xl:w-[90%] flex justify-center mx-auto flex-wrap px-10 gap-8">
                     {loading ? (
                         <p>Đang tải sản phẩm...</p>
                     ) : error ? (

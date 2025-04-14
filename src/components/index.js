@@ -8,5 +8,5 @@ export { default as InputCombo } from "./InputCombo";
 export { default as SelectCombo } from "./SelectCombo";
 export { default as PaymentItem } from "./PaymentItem";
 export { default as ProductInfo } from "./ProductInfo";
-export { default as ProductTaste } from "./ProductInfo";
-export { default as ProductDescrip } from "./ProductDescrip";
+export { default as ProductTaste } from "./ProductTaste";
+export { default as QuantitySelector } from "./QuantitySelector";

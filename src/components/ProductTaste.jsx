@@ -1,6 +1,9 @@
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faArrowRight } from "@fortawesome/free-solid-svg-icons";
 import choco from "../assets/images/chocolate.png";
 import raisin from "../assets/images/raisins.png";
 import nuts from "../assets/images/peanut.png";
+import { LinkButton } from "../components";
 function ProductTaste() {
     return (
         <div className="w-full flex mt-32">
@@ -35,5 +38,4 @@ function ProductTaste() {
         </div>
     );
 }
-
 export default ProductTaste;

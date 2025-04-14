@@ -1,9 +1,18 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTruckFast } from "@fortawesome/free-solid-svg-icons";
 import img from "../assets/images/S&B250.png";
+import QuantitySelector from "./QuantitySelector";
 import { useState } from "react";
 function CartItem() {
-    const [count, setCount] = useState(1);
+    const unitPrice = 196000;
+    const [quantity, setQuantity] = useState(1);
+    const handleQuantityChange = (newValue) => {
+        setQuantity(newValue);
+        console.log("Số lượng mới trong giỏ hàng:", newValue);
+        // Logic cập nhật giỏ hàng (ví dụ: gửi API, cập nhật state)
+    };
+
+    const totalPrice = unitPrice * quantity;
 
     return (
         <div className="mt-6 w-[90%] mx-auto bg-white rounded-sm p-5 border border-darkCF">
@@ -17,17 +26,11 @@ function CartItem() {
                         <p className="text-sm text-gray-500">Hình thức: 1000gr</p>
                     </div>
                 </div>
-                <div className="text-lg text-center text-gray-800 w-[11%]">{Number(196000).toLocaleString("en-US")}VNĐ</div>
-                <div className="flex items-center justify-center w-[11%] ">
-                    <button onClick="(e).target.value" className="w-8 h-8 border border-gray-300 bg-gray-100 text-gray-600 hover:bg-gray-200">
-                        -
-                    </button>
-                    <input type="text" value={count} className="w-12 h-8 text-center border-t border-b border-gray-300 outline-none" />
-                    <button onClick="(e).target.value" className="w-8 h-8 border border-gray-300 bg-gray-100 text-gray-600 hover:bg-gray-200">
-                        +
-                    </button>
-                </div>
-                <div className="text-lg text-center text-red-500 w-[11%]">{Number(196000 * 1).toLocaleString("en-US")}VNĐ</div>
+                <div className="text-lg text-center text-gray-800 w-[11%]">{Number(unitPrice).toLocaleString("en-US")}VNĐ</div>
+
+                <QuantitySelector initialQuantity={4} minQuantity={1} maxQuantity={40} onChange={handleQuantityChange} />
+
+                <div className="text-lg text-center text-red-500 w-[11%]">{Number(totalPrice).toLocaleString("en-US")}VNĐ</div>
                 <button className="mx-auto text-red-500 hover:underline w-[11%]">Xóa</button>
             </div>
 

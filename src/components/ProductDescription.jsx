@@ -1,6 +1,6 @@
-function ProductDescrip() {
+function ProductDescription() {
     return (
-        <div className="mt-16 w-full  h-fit px-8 py-8 text-justify text-darkCF shadow-lg">
+        <div className="mt-16 w-full h-fit px-8 py-8 text-justify text-darkCF shadow-lg">
             <h2 className="text-xl font-gilroy_bold">MÔ TẢ SẢN PHẨM</h2>
             <div className="mt-2 mb-2 w-full h-0.5 bg-brownCF"></div>
             <p>• Cà phê Robusta mang vị đắng đậm hương thơm ngất ngây để lại hậu vị sau khi uống làm say lòng những người thưởng thức khó tính nhất. Thích hợp người gu cà phê mạnh. Dùng pha máy Espresso hoặc pha phin đều được.</p>
@@ -17,4 +17,4 @@ function ProductDescrip() {
         </div>
     );
 }
-export default ProductDescrip;
+export default ProductDescription;
