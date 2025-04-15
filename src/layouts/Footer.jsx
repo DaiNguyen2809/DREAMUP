@@ -6,7 +6,7 @@ import { faFacebook, faYoutube, faInstagram, faTwitter, faPinterest } from "@for
 function Footer() {
     return (
         <>
-            <div className="w-full h-fit px-16 py-16 bg-darkCF font-gilroy text-lg text-white leading-loose flex flex-col justify-between">
+            <div className="w-full h-fit px-16 py-16 bg-darkGreenCF font-gilroy text-lg text-white leading-loose flex flex-col justify-between">
                 <div className="w-full flex justify-between">
                     <div className="w-[45%]">
                         <img src={logo} alt="logo" className="h-24 mb-2" />
@@ -63,6 +63,7 @@ function Footer() {
                     </div>
                 </div>
             </div>
+            <div className="w-full h-10 bg-yellowCF text-center text-darkCF py-2 font-gilroy_thin">2015 - Bản quyền trang web thuộc về Công ty TNHH Grace On Earth</div>
         </>
     );
 }

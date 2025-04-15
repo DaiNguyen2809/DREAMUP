@@ -1,5 +1,5 @@
 import { Routes, Route } from "react-router-dom";
-import { Home, About, Product, Blog, Quiz, Cart, ProductDetail, Payment, Register, Login, ForgotPassword } from "./pages";
+import { Home, About, Product, Blog, Quiz, Cart, ProductDetail, Payment, Register, Login, Logout, ForgotPassword, InfoCustomer } from "./pages";
 
 const AppRoutes = () => {
     return (
@@ -13,8 +13,10 @@ const AppRoutes = () => {
             <Route path="/cart" element={<Cart />}></Route>
             <Route path="/payment" element={<Payment />}></Route>
             <Route path="/login" element={<Login />}></Route>
+            <Route path="/logout" element={<Logout />}></Route>
             <Route path="/register" element={<Register />}></Route>
             <Route path="/forgotpassword" element={<ForgotPassword />}></Route>
+            <Route path="/info" element={<InfoCustomer />}></Route>
         </Routes>
     );
 };
