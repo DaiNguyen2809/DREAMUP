@@ -5,7 +5,7 @@ import logo from "../assets/images/logo_dream_up.png";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { LinkButton } from "../components";
 
-function Header() {
+const Header = React.memo(() => {
     const navigate = useNavigate();
     const location = useLocation();
     const [user, setUser] = useState(null);
@@ -39,7 +39,7 @@ function Header() {
             <div className="bg-yellowCF w-full h-8 px-10 text-darkCF text-sm font-gilroy flex items-center justify-end">
                 {user ? (
                     <div className="flex items-center space-x-2">
-                        <Link to="/info" className="hover:underline">
+                        <Link to="/profile/user" className="hover:underline">
                             Xin chào, {user.name}
                         </Link>
                         <span className="mr-3 ml-3">|</span>
@@ -69,7 +69,7 @@ function Header() {
                     <Link to="/">Trang chủ</Link>
                     <Link to="/product">Sản phẩm</Link>
                     <Link to="/about">Về Dream Up</Link>
-                    <Link to="/blog">Bài viết</Link>
+                    <Link to="/event">Tin tức & sự kiện</Link>
                 </div>
                 <div className="ml-8 w-[40%] flex gap-2 items-center justify-end">
                     <LinkButton path="/quiz" className="text-brownCF">
@@ -86,6 +86,6 @@ function Header() {
             </div>
         </div>
     );
-}
+});
 
 export default Header;

@@ -2,8 +2,9 @@ import logo from "../assets/images/logo_dream_up.png";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPhone, faEnvelope, faCopyright } from "@fortawesome/free-solid-svg-icons";
 import { faFacebook, faYoutube, faInstagram, faTwitter, faPinterest } from "@fortawesome/free-brands-svg-icons";
+import React from "react";
 
-function Footer() {
+const Footer = React.memo(() => {
     return (
         <>
             <div className="w-full h-fit px-16 py-16 bg-darkGreenCF font-gilroy text-lg text-white leading-loose flex flex-col justify-between">
@@ -24,7 +25,7 @@ function Footer() {
                     </div>
 
                     <div className="flex flex-col mt-4 font-gilroy_thin">
-                        <h3 className="font-gilroy">Giới thiệu</h3>
+                        <h3 className="font-gilroy_bold">Giới thiệu</h3>
                         <p className="cursor-pointer hover:underline">Về Dream Up</p>
                         <p className="cursor-pointer hover:underline">Hoạt động</p>
                         <p className="cursor-pointer hover:underline">Dự án</p>
@@ -32,7 +33,7 @@ function Footer() {
                     </div>
 
                     <div className="flex flex-col mt-4 font-gilroy_thin">
-                        <h3 className="font-gilroy">Sản phẩm</h3>
+                        <h3 className="font-gilroy_bold">Sản phẩm</h3>
                         <p className="cursor-pointer hover:underline">Cà phê rang xay</p>
                         <p className="cursor-pointer hover:underline">Cà phê hòa tan</p>
                         <p className="cursor-pointer hover:underline">Nước cốt cà phê</p>
@@ -40,7 +41,7 @@ function Footer() {
                     </div>
 
                     <div className="flex flex-col mt-4 font-gilroy_thin">
-                        <h3 className="font-gilroy">Kiến thức</h3>
+                        <h3 className="font-gilroy_bold">Kiến thức</h3>
                         <p className="cursor-pointer hover:underline">Chọn loại cà phê nào</p>
                         <p className="cursor-pointer hover:underline">Bài viết</p>
                     </div>
@@ -66,6 +67,6 @@ function Footer() {
             <div className="w-full h-10 bg-yellowCF text-center text-darkCF py-2 font-gilroy_thin">2015 - Bản quyền trang web thuộc về Công ty TNHH Grace On Earth</div>
         </>
     );
-}
+});
 
 export default Footer;

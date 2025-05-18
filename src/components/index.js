@@ -10,3 +10,7 @@ export { default as PaymentItem } from "./PaymentItem";
 export { default as ProductInfo } from "./ProductInfo";
 export { default as ProductTaste } from "./ProductTaste";
 export { default as QuantitySelector } from "./QuantitySelector";
+export { default as ProductBanner } from "./ProductBanner";
+export { default as ProfileSidebar } from "./ProfileSidebar";
+export { default as ScrollFade } from "./ScrollFade";
+export { default as DialogFlowChart } from "./DialogFlowChart";

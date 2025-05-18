@@ -16,7 +16,7 @@ module.exports = {
             colors: {
                 orangeCF: "#DF6603",
                 mintCF: "#047676",
-                yellowCF: "#fbaf1c",
+                yellowCF: "#ffae00",
                 darkCF: "#333132",
                 lightCF: "#fbf8f0",
                 blueCF: "#0f1b49",

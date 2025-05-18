@@ -2,16 +2,17 @@ import { RectangleUnderline, Button } from "../components";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faShoppingCart, faCoins, faHeart, faCircleInfo } from "@fortawesome/free-solid-svg-icons";
 function ProductInfo({ product }) {
+    const backendUrl = process.env.REACT_APP_BACKEND_URL;
     return (
         <div className="w-full flex items-center justify-center">
             <div className="w-[47%] 2xl:w-[35%] h-fit">
-                <img src={`http://127.0.0.1:8000/storage/${product.image}`} alt="ảnh sản phẩm" className="max-w-xl shadow-md" />
+                <img src={`${backendUrl}/storage/${product.image}`} alt="ảnh sản phẩm" className="max-w-xl shadow-md" />
                 <div className="max-w-xl flex justify-between mt-4">
-                    <img src={`http://127.0.0.1:8000/storage/${product.image2}`} alt="ảnh sản phẩm" className="w-[19%] bg-red-100 shadow-sm" />
-                    <img src={`http://127.0.0.1:8000/storage/${product.image3}`} alt="ảnh sản phẩm" className="w-[19%] bg-red-100 shadow-sm" />
-                    <img src={`http://127.0.0.1:8000/storage/${product.image4}`} alt="ảnh sản phẩm" className="w-[19%] bg-red-100 shadow-sm" />
-                    <img src={`http://127.0.0.1:8000/storage/${product.image5}`} alt="ảnh sản phẩm" className="w-[19%] bg-red-100 shadow-sm" />
-                    <img src={`http://127.0.0.1:8000/storage/${product.image6}`} alt="ảnh sản phẩm" className="w-[19%] bg-red-100 shadow-sm" />
+                    <img src={`${backendUrl}/storage/${product.image2}`} alt="ảnh sản phẩm" className="w-[19%] bg-red-100 shadow-sm" />
+                    <img src={`${backendUrl}/storage/${product.image3}`} alt="ảnh sản phẩm" className="w-[19%] bg-red-100 shadow-sm" />
+                    <img src={`${backendUrl}/storage/${product.image4}`} alt="ảnh sản phẩm" className="w-[19%] bg-red-100 shadow-sm" />
+                    <img src={`${backendUrl}/storage/${product.image5}`} alt="ảnh sản phẩm" className="w-[19%] bg-red-100 shadow-sm" />
+                    <img src={`${backendUrl}/storage/${product.image6}`} alt="ảnh sản phẩm" className="w-[19%] bg-red-100 shadow-sm" />
                 </div>
             </div>
             <div className="w-[53%] 2xl:w-[55%] leading-relaxed">
